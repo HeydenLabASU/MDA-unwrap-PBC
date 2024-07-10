@@ -10,10 +10,6 @@ dependencies:
   # MDAnalysis
   - MDAnalysis
 
-  # unwrap
-  - ctypes
-  - times
-
   # Testing
   - pytest
   - pytest-cov
