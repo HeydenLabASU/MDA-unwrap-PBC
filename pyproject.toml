@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "MDA-unwrap-PBC"
-description = "Use fast C routines to make molecules whole in PBC trajectories."
+description = "Fast C routines to make molecules whole in PBC trajectories"
 license = {file = "LICENSE" }
 authors = [
     {name = "Matthias Heyden", email = "mheyden1@asu.edu"},

@@ -2,6 +2,7 @@ import ctypes as ct
 import numpy as np
 import MDAnalysis as mda
 import time
+from MDA_unwrap_PBC.ctypes_lib.files import *
 
 class t_branch(ct.Structure):
     """recursive datatype to describe molecules as trees"""
@@ -16,7 +17,7 @@ class t_trees(ct.Structure):
                  ("nTrees",ct.c_int32))
 
 #load the shared library with C routines
-clib = ct.cdll.LoadLibrary('lib/unwrap.so')
+clib = ct.cdll.LoadLibrary(CLIB)
 
 #define argument types of function 'buildTrees' in imported library 'clib'
 clib.buildTrees.argtypes = [
@@ -27,7 +28,7 @@ clib.buildTrees.argtypes = [
     np.ctypeslib.ndpointer(dtype=np.int32, ndim=1, flags='C_CONTIGUOUS'),
     np.ctypeslib.ndpointer(dtype=np.int32, ndim=2, flags='C_CONTIGUOUS')
 ]
-#define retrun type of function 'buildTrees' in imported library 'clib'
+#define return type of function 'buildTrees' in imported library 'clib'
 clib.buildTrees.restype = ct.c_int32
 
 #define argument types of function 'unwrap' in imported library 'clib'
@@ -36,7 +37,7 @@ clib.unwrap.argtypes = [
     np.ctypeslib.ndpointer(dtype=np.float32, ndim=2, flags='C_CONTIGUOUS'),
     np.ctypeslib.ndpointer(dtype=np.float32, ndim=1, flags='C_CONTIGUOUS')
 ]
-#define retrun type of function 'unwrap' in imported library 'clib'
+#define return type of function 'unwrap' in imported library 'clib'
 clib.unwrap.restype = ct.c_int32
 
 class unwrap:

@@ -21,7 +21,7 @@ MDA-unwrap-PBC
 [url_license]: https://www.gnu.org/licenses/gpl-2.0
 [url_mda]: https://www.mdanalysis.org
 
-Use fast C routines to make molecules whole in PBC trajectories.
+Fast C routines to make molecules whole in PBC trajectories
 
 MDA-unwrap-PBC is bound by a [Code of Conduct](https://github.com/HeydenLabASU/MDA-unwrap-PBC/blob/main/CODE_OF_CONDUCT.md).
 

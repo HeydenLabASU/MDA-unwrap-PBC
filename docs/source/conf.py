@@ -111,10 +111,11 @@ html_theme_options = {
     "mda_official": False,
 
 }
-# Set your logo and favicon here -- replace the placeholders!
-html_logo = "_static/logo/placeholder_logo.png"
-html_favicon = "_static/logo/placeholder_favicon.svg"
 
+# Set your logo and favicon here -- replace the placeholders!
+# An SVG with empty gears is provided for editing
+html_logo = "_static/logo/mdakits-placeholder-logo.png"
+html_favicon = "_static/logo/mdakits-empty-favicon-template.svg"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -184,7 +185,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, "MDA-unwrap-PBC", "MDA-unwrap-PBC Documentation",
-     author, "MDA-unwrap-PBC", "Use fast C routines to make molecules whole in PBC trajectories.",
+     author, "MDA-unwrap-PBC", "Fast C routines to make molecules whole in PBC trajectories",
      "Miscellaneous"),
 ]
 

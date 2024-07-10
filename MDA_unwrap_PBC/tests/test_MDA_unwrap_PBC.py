@@ -1,22 +1,19 @@
 """
-Test run for the MDA_unwrap_PBC package.
+Unit and regression test for the MDA_unwrap_PBC package.
 """
 
-import ctypes as ct
-import numpy as np
-import MDAnalysis as mda
-import time
-
+# Import package, test suite, and other packages as needed
 import MDA_unwrap_PBC
-from MDA_unwrap_PBC.data.files import *
+import pytest
+import sys
 
-u = mda.Universe(TOPOLOGY,TRAJECTORY)
-nRead=len(u.trajectory)
 
-trees = unwrap.buildTrees(u)
+def test_MDA_unwrap_PBC_imported():
+    """Sample test, will always pass so long as import statement worked"""
+    assert "MDA_unwrap_PBC" in sys.modules
 
-#loop over trajectory, apply unwrap, and write out coordinates
-with mda.Writer('data/traj_pbc.trr', len(u.atoms)) as w:
-    for ts in u.trajectory:
-        u.atoms.positions=unwrap.unwrap(u,trees)
-        w.write(u)
+
+def test_mdanalysis_logo_length(mdanalysis_logo_text):
+    """Example test using a fixture defined in conftest.py"""
+    logo_lines = mdanalysis_logo_text.split("\n")
+    assert len(logo_lines) == 46, "Logo file does not have 46 lines!"
