@@ -26,7 +26,8 @@ clib.buildTrees.argtypes = [
     np.ctypeslib.ndpointer(dtype=np.int32, ndim=1, flags='C_CONTIGUOUS'),
     ct.c_int32,
     np.ctypeslib.ndpointer(dtype=np.int32, ndim=1, flags='C_CONTIGUOUS'),
-    np.ctypeslib.ndpointer(dtype=np.int32, ndim=2, flags='C_CONTIGUOUS')
+    np.ctypeslib.ndpointer(dtype=np.int32, ndim=2, flags='C_CONTIGUOUS'),
+    np.ctypeslib.ndpointer(dtype=np.float32, ndim=1, flags='C_CONTIGUOUS')
 ]
 #define return type of function 'buildTrees' in imported library 'clib'
 clib.buildTrees.restype = ct.c_int32
@@ -57,6 +58,8 @@ class unwrap:
         nBonds=i
         bondTags=np.zeros(len(u.bonds),dtype=np.int32)
 
+        masses=u.atoms.masses.astype(np.float32)
+
         trees = t_trees()
         error = clib.buildTrees(
             ct.pointer(trees),
@@ -64,7 +67,8 @@ class unwrap:
             atomTags,
             ct.c_int(nBonds),
             bondTags,
-            bondList
+            bondList,
+            masses
         )
         if error != 0:
             print(f'ERROR reported by \'buildTrees\' function\nsee \'error.log\'\n')
