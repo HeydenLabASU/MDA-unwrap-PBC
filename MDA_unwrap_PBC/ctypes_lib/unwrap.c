@@ -91,12 +91,13 @@ int buildTree(	t_branch *tree,
 	}
 }
 
-int buildTrees(t_trees *trees,int nAtoms,int *atomTags,int nBonds,int *bondTags,int *bondList) {
+int buildTrees(t_trees *trees,int nAtoms,int *atomTags,int nBonds,int *bondTags,int *bondList,float *masses) {
 	int cnt=0;
 	int node;
 	int bondStart=0;
 	t_branch *tree;
 	int error;
+    t_branch *tmp[10]; /*temporary storage*/
 
 	trees->trees=(t_branch*)malloc(nAtoms*sizeof(t_branch));
 	node=getNextRoot(nAtoms,atomTags);
@@ -105,8 +106,16 @@ int buildTrees(t_trees *trees,int nAtoms,int *atomTags,int nBonds,int *bondTags,
 		tree->node=node;
 		error=buildTree(tree,nAtoms,atomTags,nBonds,bondTags,bondList,&bondStart);
 		if(error==1) return 1;
-		cnt++;
-		node=getNextRoot(nAtoms,atomTags);
+        if(tree->nLinks==0 && masses[node]==0.0) {
+            /*found isolated atoms with zero mass == dummy atom*/
+            /*will pretend there is a bond with first atom of previous molecule/tree*/
+            for(i=0;i<trees->trees[cnt-1].nLinks;i++) {
+                
+            }
+        } else {
+		    cnt++;
+		    node=getNextRoot(nAtoms,atomTags);
+        }
 	}
 	trees->nTrees=cnt;
 	return 0;
