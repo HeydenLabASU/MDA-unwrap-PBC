@@ -27,7 +27,7 @@ clib.buildTrees.argtypes = [
     ct.c_int32,
     np.ctypeslib.ndpointer(dtype=np.int32, ndim=1, flags='C_CONTIGUOUS'),
     np.ctypeslib.ndpointer(dtype=np.int32, ndim=2, flags='C_CONTIGUOUS'),
-    np.ctypeslib.ndpointer(dtype=np.int32, ndim=1, flags='C_CONTIGUOUS')
+    np.ctypeslib.ndpointer(dtype=np.float32, ndim=1, flags='C_CONTIGUOUS')
 ]
 #define return type of function 'buildTrees' in imported library 'clib'
 clib.buildTrees.restype = ct.c_int32
