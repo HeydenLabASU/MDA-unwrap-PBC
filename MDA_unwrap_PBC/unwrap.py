@@ -45,6 +45,7 @@ class unwrap:
     """functions to make molecules whole in PBC trajectories"""
     def buildTrees(u):
         """build recursive bond trees that define molecules"""
+        print('building intra-molecular bond trees ...')
         start=time.process_time()
         nAtoms=len(u.atoms)
         atomTags=np.zeros(nAtoms,dtype=np.int32)
@@ -82,8 +83,9 @@ class unwrap:
         if error != 0:
             print(f'ERROR reported by \'buildTrees\' function\nsee \'error.log\'\n')
         stop=time.process_time()
-        print(f'detected {trees.nTrees} molecules')
-        print(f'tree building time: {stop-start:.2f}s')
+        print(f' -> detected {trees.nTrees} molecules')
+        print(f' -> tree building time: {stop-start:.2f}s')
+        print(f' -> ready to unwrap')
         return trees
 
     def unwrap(u,trees):

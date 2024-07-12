@@ -62,12 +62,15 @@ int buildTree(    t_branch *tree,
             atomTags[b0]=1;
             bondTags[i]=1;
         }
+        if(atomTags[b0]==1 && atomTags[b1]==1) {
+            bondTags[i]=1;
+        }
         if(continuous==1 && bondTags[i]==0) {
             continuous=0;
             bondStart[0]=i;
         }
         i++;
-       if(continuous==0 && (b0>node && b1>node)) {
+        if(continuous==0 && (b0>node && b1>node)) {
             /*bondList is assumed to be sorted*/
             /*therefore we can break the loop now*/
             break;
