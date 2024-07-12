@@ -67,7 +67,7 @@ int buildTree(    t_branch *tree,
             bondStart[0]=i;
         }
         i++;
-        if(b0>node && b1>node) {
+       if(continuous==0 && (b0>node && b1>node)) {
             /*bondList is assumed to be sorted*/
             /*therefore we can break the loop now*/
             break;
