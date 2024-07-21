@@ -16,5 +16,5 @@ trees = unwrap.unwrap.buildTrees(u)
 #loop over trajectory, apply unwrap, and write out coordinates
 with mda.Writer(TRAJ_PBC, len(u.atoms)) as w:
     for ts in u.trajectory:
-        u.atoms.positions=unwrap.unwrap.unwrap(u,trees)
+        u.trajectory.ts._pos=unwrap.unwrap.unwrap(u,trees)
         w.write(u)
