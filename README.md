@@ -25,18 +25,6 @@ Fast C routines to make molecules whole in PBC trajectories
 
 MDA-unwrap-PBC is bound by a [Code of Conduct](https://github.com/HeydenLabASU/MDA-unwrap-PBC/blob/main/CODE_OF_CONDUCT.md).
 
-### Pre-Installation
-
-Prior to installing this package, you need to compile the corresponding C-library. For now, we kept things simple here and assume that you have a 'gcc' as a terminal command.
-In that case, use the following commands to complete this step:
-
-```
-cd MDA_unwrap_PBC/ctypes_lib
-chmod +x compile.sh
-./compile.sh
-cd ../..
-```
-
 ### Installation
 
 To build MDA-unwrap-PBC from source,
