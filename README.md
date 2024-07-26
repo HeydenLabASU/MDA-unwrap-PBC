@@ -25,18 +25,6 @@ Fast C routines to make molecules whole in PBC trajectories
 
 MDA-unwrap-PBC is bound by a [Code of Conduct](https://github.com/HeydenLabASU/MDA-unwrap-PBC/blob/main/CODE_OF_CONDUCT.md).
 
-### Pre-Installation
-
-Prior to installing this package, you need to compile the corresponding C-library. For now, we kept things simple here and assume that you have a 'gcc' as a terminal command.
-In that case, use the following commands to complete this step:
-
-```
-cd MDA_unwrap_PBC/ctypes_lib
-chmod +x compile.sh
-./compile.sh
-cd ../..
-```
-
 ### Installation
 
 To build MDA-unwrap-PBC from source,
@@ -67,8 +55,14 @@ conda env update --name MDA-unwrap-PBC --file docs/requirements.yaml
 Build this package from source:
 
 ```
-pip install -e .
+pip install .
 ```
+
+---
+**NOTE**: Running this with the `-e` flag would not trigger the compilation of requisite C libraries.
+
+---
+
 
 If you want to update your dependencies (which can be risky!), run:
 
