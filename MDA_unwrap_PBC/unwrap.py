@@ -2,6 +2,7 @@ import ctypes as ct
 import numpy as np
 import MDAnalysis as mda
 import time
+#defines CLIB as the path to the shared library
 from MDA_unwrap_PBC.ctypes_lib.files import *
 
 class t_branch(ct.Structure):
