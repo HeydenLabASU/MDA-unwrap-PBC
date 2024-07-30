@@ -55,8 +55,14 @@ conda env update --name MDA-unwrap-PBC --file docs/requirements.yaml
 Build this package from source:
 
 ```
-pip install -e .
+pip install .
 ```
+
+---
+**NOTE**: Running this with the `-e` flag would not trigger the compilation of requisite C libraries.
+
+---
+
 
 If you want to update your dependencies (which can be risky!), run:
 
