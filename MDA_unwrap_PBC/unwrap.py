@@ -51,14 +51,9 @@ class unwrap:
         nAtoms=len(u.atoms)
         atomTags=np.zeros(nAtoms,dtype=np.int32)
 
-        bondList=np.zeros([len(u.bonds),2],dtype=np.int32)
-        i=0
-        for b in u.bonds:
-            bondList[i][0]=b[0].index
-            bondList[i][1]=b[1].index
-            i+=1
+        bondList=u.bonds.indices
         bondList.sort(axis=1)
-        nBonds=i
+        nBonds=len(u.bonds)
         p=np.zeros(nBonds,dtype=np.int64)
         for i in range(nBonds):
             #we calculate for each bond a priority for sorting
