@@ -84,17 +84,15 @@ class unwrap:
         print(f' -> ready to unwrap')
         return trees
 
-    def unwrap(u,trees):
+    def run(u,trees):
         """
         unwrap coordinates: 
         ensure that all components of covalent bonds are shorter than 1/2 the box
         """
-        coords=u.atoms.positions.astype(np.float32)
         error = clib.unwrap(
             trees,
-            coords,
+            u.trajectory.ts._pos,
             u.dimensions
         )
         if error != 0:
             print(f'ERROR reported by \'unwrap\' function\nsee \'error.log\'\n')
-        return coords
