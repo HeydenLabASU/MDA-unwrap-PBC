@@ -83,9 +83,9 @@ class unwrap:
         if error != 0:
             print(f'ERROR reported by \'buildTrees\' function\nsee \'error.log\'\n')
         stop=time.process_time()
-        print(f' -> detected {trees.nTrees} molecules')
-        print(f' -> tree building time: {stop-start:.2f}s')
-        print(f' -> ready to unwrap')
+        print(f'unwrap -> detected {trees.nTrees} molecules')
+        print(f'unwrap -> tree building time: {stop-start:.2f}s')
+        print(f'unwrap -> ready to unwrap')
         return trees
 
     def run(self):
