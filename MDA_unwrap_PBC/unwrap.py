@@ -43,17 +43,21 @@ clib.unwrap.argtypes = [
 clib.unwrap.restype = ct.c_int32
 
 class unwrap:
-    """functions to make molecules whole in PBC trajectories"""
-    def buildTrees(u):
+    """make molecules whole in PBC trajectories"""
+    def __init__(self,u):
+        self.u = u
+        self.trees = self.buildTrees()
+        
+    def buildTrees(self):
         """build recursive bond trees that define molecules"""
         print('building intra-molecular bond trees ...')
         start=time.process_time()
-        nAtoms=len(u.atoms)
+        nAtoms=len(self.u.atoms)
         atomTags=np.zeros(nAtoms,dtype=np.int32)
 
-        bondList=u.bonds.indices
+        bondList=self.u.bonds.indices
         bondList.sort(axis=1)
-        nBonds=len(u.bonds)
+        nBonds=len(self.u.bonds)
         p=np.zeros(nBonds,dtype=np.int64)
         for i in range(nBonds):
             #we calculate for each bond a priority for sorting
@@ -62,9 +66,9 @@ class unwrap:
         #now we have a sorted list of bonds
         bondList=bondList[order]
 
-        bondTags=np.zeros(len(u.bonds),dtype=np.int32)
+        bondTags=np.zeros(len(self.u.bonds),dtype=np.int32)
 
-        masses=u.atoms.masses.astype(np.float32)
+        masses=self.u.atoms.masses.astype(np.float32)
 
         trees = t_trees()
         error = clib.buildTrees(
@@ -79,20 +83,20 @@ class unwrap:
         if error != 0:
             print(f'ERROR reported by \'buildTrees\' function\nsee \'error.log\'\n')
         stop=time.process_time()
-        print(f' -> detected {trees.nTrees} molecules')
-        print(f' -> tree building time: {stop-start:.2f}s')
-        print(f' -> ready to unwrap')
+        print(f'unwrap -> detected {trees.nTrees} molecules')
+        print(f'unwrap -> tree building time: {stop-start:.2f}s')
+        print(f'unwrap -> ready to unwrap')
         return trees
 
-    def run(u,trees):
+    def run(self):
         """
         unwrap coordinates: 
         ensure that all components of covalent bonds are shorter than 1/2 the box
         """
         error = clib.unwrap(
-            trees,
-            u.trajectory.ts._pos,
-            u.dimensions
+            self.trees,
+            self.u.trajectory.ts._pos,
+            self.u.dimensions
         )
         if error != 0:
             print(f'ERROR reported by \'unwrap\' function\nsee \'error.log\'\n')
