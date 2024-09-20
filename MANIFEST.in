@@ -3,4 +3,4 @@ include MANIFEST.in
 include AUTHORS.md CHANGELOG.md CODE_OF_CONDUCT.md README.md
 
 graft MDA_unwrap_PBC
-global-exclude *.py[cod] __pycache__ *.so
+global-exclude *.py[cod] __pycache__
