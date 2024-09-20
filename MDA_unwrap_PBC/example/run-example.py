@@ -11,7 +11,7 @@ from MDA_unwrap_PBC.example.datafiles import *
 u = mda.Universe(TOPOL,TRAJ)
 nRead=len(u.trajectory)
 
-unwrap = pbc.unwrap.buildTrees(u)
+unwrap = pbc.unwrap(u)
 
 #loop over trajectory, apply unwrap, and write out coordinates
 with mda.Writer(TRAJ_PBC, len(u.atoms)) as w:
