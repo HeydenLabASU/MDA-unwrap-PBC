@@ -21,3 +21,4 @@ The rules for this file:
 
 **2024**
 - Matthias Heyden <@HeydenLabASU>
+- Amrtuhesh Thirumalaiswamy <@amruthesht>
