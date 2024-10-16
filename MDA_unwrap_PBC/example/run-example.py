@@ -16,5 +16,5 @@ unwrap = pbc.unwrap(u)
 #loop over trajectory, apply unwrap, and write out coordinates
 with mda.Writer(TRAJ_PBC, len(u.atoms)) as w:
     for ts in u.trajectory:
-        unwrap.run()
+        unwrap.single_frame()
         w.write(u)

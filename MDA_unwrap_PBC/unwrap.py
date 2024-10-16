@@ -88,7 +88,7 @@ class unwrap:
         print(f'unwrap -> ready to unwrap')
         return trees
 
-    def run(self):
+    def single_frame(self):
         """
         unwrap coordinates: 
         ensure that all components of covalent bonds are shorter than 1/2 the box
